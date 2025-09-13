@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sổ Kỷ Luật Online</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+    <div class="navbar">Sổ Kỷ Luật Online</div>
+
+    <div class="container">
+        <div class="login-container">
+            <h2>Đăng nhập</h2>
+            <input type="text" id="username" placeholder="Nhập tên của bạn">
+            <button onclick="checkUser()">Tiếp tục</button>
+        </div>
+
+        <div class="password-container">
+            <h2>Nhập mật khẩu quản trị viên</h2>
+            <input type="password" id="password" placeholder="Nhập mật khẩu">
+            <button onclick="adminLogin()">Đăng nhập</button>
+        </div>
+
+        <div class="tabs" style="display: none;">
+            <button onclick="switchTab('violationTab')">Vi phạm</button>
+            <button onclick="switchTab('disciplinaryTab')">Sổ Kỷ Luật</button>
+            <button onclick="switchTab('homeworkTab')">Báo Bài</button>
+        </div>
+
+        <div class="tab-content violationTab active">
+            <h2>Danh sách vi phạm của bạn</h2>
+            <p id="userWelcome"></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên</th>
+                        <th>Lý do vi phạm</th>
+                        <th>Số lần</th>
+                        <th>Tổng</th>
+                        <th>Ngày</th>
+                    </tr>
+                </thead>
+                <tbody id="violationTable"></tbody>
+            </table>
+        </div>
+
+        <div class="tab-content disciplinaryTab">
+            <h2>Danh sách vi phạm toàn bộ</h2>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm vi phạm..." onkeyup="searchViolations()">
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên</th>
+                        <th>Lý do vi phạm</th>
+                        <th>Số lần</th>
+                        <th>Tổng</th>
+                        <th>Ngày</th>
+                        <th>Môn học</th>
+                        <th>Ngày vi phạm</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="disciplinaryTable"></tbody>
+            </table>
+            <div class="chart-container">
+                <canvas id="violationChart"></canvas>
+            </div>
+        </div>
+
+        <div class="tab-content homeworkTab" style="display: none;">
+            <h2>Báo Bài</h2>
+            <div class="development-message">Đang phát triển, sẽ sớm ra mắt!</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tiết</th>
+                        <th>Môn</th>
+                        <th>Nội dung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td></td><td></td></tr>
+                    <tr><td>2</td><td></td><td></td></tr>
+                    <tr><td>3</td><td></td><td></td></tr>
+                    <tr><td>4</td><td></td><td></td></tr>
+                    <tr><td>5</td><td></td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="admin-controls">
+            <h3>Thêm vi phạm</h3>
+            <input type="text" id="newName" placeholder="Tên">
+            <input type="text" id="newReason" placeholder="Lý do">
+            <input type="number" id="newCount" placeholder="Số lần" min="1">
+            <input type="text" id="newSubject" placeholder="Môn học">
+            <input type="date" id="newViolationDate" placeholder="Ngày vi phạm">
+            <button onclick="addViolation()">Thêm</button>
+            <button onclick="exportToExcel()">Xuất Excel</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h3>Trách nhiệm về ứng dụng</h3>
+        <img src="https://res.cloudinary.com/disrlkhy1/image/upload/v1757771608/Blue_Futuristic_Gaming_Logo_1_xz7l8f.svg" alt="">
+        <h3> Liên hệ: long.npn@gmail.com</h3>
+        <p>© James Studio .inc, This is a Internal Version
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
